@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/pointpillars_inference.dir/src/main.cpp.o CMakeFiles/pointpillars_inference.dir/src/voxelizer.cpp.o CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.o -o pointpillars_inference 

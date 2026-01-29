@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/batch_inference.dir/batch_inference.cpp.o CMakeFiles/batch_inference.dir/src/voxelizer.cpp.o CMakeFiles/batch_inference.dir/src/postprocess.cpp.o -o batch_inference 
