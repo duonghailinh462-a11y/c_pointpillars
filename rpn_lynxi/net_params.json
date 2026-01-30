@@ -1,0 +1,23 @@
+{
+      "version": "2024120013",
+      "target": "apu",
+      "is_map": true,
+      "chip_num": 1,
+      "net_num": 1,
+      "parallel_mode": "DP",
+      "run_batch": 1,
+      "cpu_arch": "arm",
+      "cc": "aarch64-linux-gnu-g++",
+      "file_name": {
+            "cpu_lib": "deploy_lib.so",
+            "cpu_graph": "deploy_graph.json",
+            "cpu_params": "deploy_param.params",
+            "apu_lib": "apu_lib.bin",
+            "io_config": "top_graph.json"
+      },
+      "net:": null,
+      "is_dynamic_shape": false,
+      "build_mode": "abc",
+      "build_time": "2026-01-28 11:12:47",
+      "__file__": "/data/zhw/miniforge3/envs/yolov5_env/lib/python3.8/site-packages/lyngor/builder.py"
+}

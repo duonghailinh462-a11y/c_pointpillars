@@ -1,0 +1,75 @@
+{
+    "graph": {
+        "nodes": [
+            {
+                "name": "vcresize_0",
+                "type": "eAPU_PRIM_VC_RESIZE"
+            },
+            {
+                "name": "mcconv_0",
+                "type": "eAPU_PRIM_MC_CONV"
+            },
+            {
+                "name": "const_0",
+                "type": "eAPU_PRIM_CONST"
+            },
+            {
+                "name": "const_1",
+                "type": "eAPU_PRIM_CONST"
+            }
+        ],
+        "edges": [
+            {
+                "src": "vcresize_0",
+                "dst": "mcconv_0",
+                "data": {
+                    "s_id": 0,
+                    "d_id": 0,
+                    "is_opt": false
+                }
+            },
+            {
+                "src": "const_0",
+                "dst": "mcconv_0",
+                "data": {
+                    "s_id": 0,
+                    "d_id": 1,
+                    "is_opt": false
+                }
+            },
+            {
+                "src": "const_1",
+                "dst": "mcconv_0",
+                "data": {
+                    "s_id": 0,
+                    "d_id": 2,
+                    "is_opt": false
+                }
+            }
+        ]
+    },
+    "instance": {
+        "name": "sys_pattern_0",
+        "level": 0,
+        "core_w_limit": 1048576,
+        "max_core_num": 1,
+        "no_splite_input_limit": 262144,
+        "slice_limit": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "check_w_node_list": [],
+        "full_w_node_list": [],
+        "output_w_node_list": [],
+        "split_w_node_list": []
+    },
+    "debug": {
+        "graph_to_svg": true
+    }
+}

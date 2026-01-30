@@ -1,0 +1,55 @@
+{
+  "nodes": [
+    {
+      "op": "null", 
+      "name": "apu_0:1", 
+      "inputs": []
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "fused_take_2", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "flatten_data": "0", 
+        "func_name": "fused_take_2"
+      }, 
+      "inputs": [
+        [
+          0, 
+          0, 
+          0
+        ]
+      ]
+    }
+  ], 
+  "arg_nodes": [0], 
+  "heads": [
+    [
+      1, 
+      0, 
+      0
+    ]
+  ], 
+  "attrs": {
+    "dltype": [
+      "list_str", 
+      [
+        "float32", 
+        "float32"
+      ]
+    ], 
+    "storage_id": [
+      "list_int", 
+      [0, 1]
+    ], 
+    "shape": [
+      "list_shape", 
+      [
+        [1, 321408], 
+        [321408]
+      ]
+    ]
+  }, 
+  "node_row_ptr": [0, 1, 2]
+}

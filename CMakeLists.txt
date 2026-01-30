@@ -7,15 +7,22 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party)
+include_directories(/usr/local/lynxi/sdk/include)
 
 # Source files
 set(SOURCES
     src/voxelizer.cpp
+    src/pfn.cpp
+    src/rpn_runner.cpp
     src/postprocess.cpp
 )
 
 # Create single frame inference executable
 add_executable(pointpillars_inference src/main.cpp ${SOURCES})
+
+# Link lynxi SDK libraries
+target_link_directories(pointpillars_inference PRIVATE /usr/local/lynxi/sdk/lib)
+target_link_libraries(pointpillars_inference PRIVATE LYNCHIPSDKCLIENT LYNCHIPSDKCLIENTCOMM)
 
 # Create batch inference executable (legacy python backend)
 option(BUILD_BATCH_INFERENCE "Build legacy batch_inference target" OFF)
@@ -45,7 +52,9 @@ if(USE_CUDA)
 endif()
 
 # Print configuration
-message(STATUS "PointPillars C++ Inference (Decode + NMS Backend)")
+message(STATUS "PointPillars C++ Inference (Full Pipeline)")
 message(STATUS "  C++ Standard: ${CMAKE_CXX_STANDARD}")
-message(STATUS "  Inference: External RPN head bin (box_map/score_map)")
+message(STATUS "  Preprocessing: C++ (Voxelization)")
+message(STATUS "  PFN: CPU (GEMM + Scatter)")
+message(STATUS "  RPN: NPU (lynxi SDK)")
 message(STATUS "  Postprocessing: C++ (Anchor decode + rotated BEV NMS)")

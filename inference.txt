@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include "lyn_sdk.h" // 假设这是灵汐的头文件
+#include "pfn.hpp"   // 刚才给你的那个 PFN_CPU 类
+
+// 1. 读取二进制文件辅助函数
+void load_bin(const char* path, std::vector<float>& buffer) {
+    std::ifstream file(path, std::ios::binary | std::ios::ate);
+    if (!file) { std::cerr << "无法打开 " << path << std::endl; return; }
+    std::streamsize size = file.tellg();
+    file.seekg(0, std::ios::beg);
+    buffer.resize(size / sizeof(float));
+    file.read((char*)buffer.data(), size);
+}
+
+int main() {
+    // === 初始化阶段 ===
+    
+    // 1. 准备 PFN (CPU)
+    PFN_CPU pfn_runner;
+    load_bin("pfn_weight.bin", pfn_runner.pfn_weights); // 加载刚才导出的权重
+    load_bin("pfn_bias.bin", pfn_runner.pfn_bias);
+    
+    // 2. 准备 RPN (NPU)
+    void* rpn_engine = nullptr;
+    // 调用灵汐 SDK 加载 rpn_lynxi 模型
+    // lyn_load_model("rpn_lynxi", &rpn_engine); 
+    
+    // 3. 准备内存
+    // RPN 输入大小: 1 * 64 * 496 * 432
+    std::vector<float> rpn_input_map(1 * 64 * 496 * 432, 0.0f);
+    
+    
+    // === 循环推理阶段 ===
+    while(true) {
+        // A. 获取点云 (假设你有了 input_voxels)
+        VoxelInfo input_voxels = ...; 
+        
+        // B. 运行 PFN (CPU) -> 耗时约 5ms
+        // 这一步直接把特征填到了 rpn_input_map 里
+        pfn_runner.run(input_voxels, rpn_input_map.data());
+        
+        // C. 运行 RPN (NPU) -> 耗时约 10-20ms
+        // lyn_execute(rpn_engine, rpn_input_map.data(), ...output...);
+        
+        // D. 后处理 (CPU)
+        // 解析输出的框...
+        
+        break; // 演示一次
+    }
+    
+    std::cout << "推理流程跑通！" << std::endl;
+    return 0;
+}

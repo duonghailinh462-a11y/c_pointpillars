@@ -1,0 +1,182 @@
+{
+  "main": {
+    "inputs": {
+      "247": {
+        "shape": "(64, 214272)",
+        "dtype": "float32",
+        "batch": 1
+      }
+    },
+    "outputs": {
+      "apu_0:0": {
+        "shape": "(1, 64, 248, 216)",
+        "dtype": "float16"
+      },
+      "apu_0:1": {
+        "shape": "(1, 64, 248, 216)",
+        "dtype": "float16"
+      },
+      "apu_0:2": {
+        "shape": "(1, 64, 248, 216)",
+        "dtype": "float16"
+      },
+      "apu_0:3": {
+        "shape": "(1, 64, 248, 216)",
+        "dtype": "float16"
+      },
+      "apu_0:4": {
+        "shape": "(1, 128, 124, 108)",
+        "dtype": "float16"
+      },
+      "apu_0:5": {
+        "shape": "(1, 128, 124, 108)",
+        "dtype": "float16"
+      },
+      "apu_0:6": {
+        "shape": "(1, 128, 124, 108)",
+        "dtype": "float16"
+      },
+      "apu_0:7": {
+        "shape": "(1, 128, 124, 108)",
+        "dtype": "float16"
+      },
+      "apu_0:8": {
+        "shape": "(1, 128, 124, 108)",
+        "dtype": "float16"
+      },
+      "apu_0:9": {
+        "shape": "(1, 128, 124, 108)",
+        "dtype": "float16"
+      },
+      "apu_0:10": {
+        "shape": "(1, 256, 62, 54)",
+        "dtype": "float16"
+      },
+      "apu_0:11": {
+        "shape": "(1, 256, 62, 54)",
+        "dtype": "float16"
+      },
+      "apu_0:12": {
+        "shape": "(1, 256, 62, 54)",
+        "dtype": "float16"
+      },
+      "apu_0:13": {
+        "shape": "(1, 256, 62, 54)",
+        "dtype": "float16"
+      },
+      "apu_0:14": {
+        "shape": "(1, 256, 62, 54)",
+        "dtype": "float16"
+      },
+      "apu_0:15": {
+        "shape": "(1, 256, 62, 54)",
+        "dtype": "float16"
+      },
+      "apu_0:16": {
+        "shape": "(1, 18, 248, 216)",
+        "dtype": "float16"
+      },
+      "apu_0:17": {
+        "shape": "(1, 42, 248, 216)",
+        "dtype": "float16"
+      },
+      "apu_0:18": {
+        "shape": "(1, 12, 248, 216)",
+        "dtype": "float16"
+      }
+    },
+    "is_concat_output": "false",
+    "is_concat_input": "true",
+    "batch_out_arrange": "true",
+    "convert_multi_out": "0"
+  },
+  "apu_0": {
+    "inputs": {
+      "247": {
+        "shape": "(64, 214272)",
+        "dtype": "float32",
+        "batch": 1
+      }
+    },
+    "outputs": {
+      "apu_0:0": {
+        "shape": "(1, 64, 248, 216)",
+        "dtype": "float16"
+      },
+      "apu_0:1": {
+        "shape": "(1, 64, 248, 216)",
+        "dtype": "float16"
+      },
+      "apu_0:2": {
+        "shape": "(1, 64, 248, 216)",
+        "dtype": "float16"
+      },
+      "apu_0:3": {
+        "shape": "(1, 64, 248, 216)",
+        "dtype": "float16"
+      },
+      "apu_0:4": {
+        "shape": "(1, 128, 124, 108)",
+        "dtype": "float16"
+      },
+      "apu_0:5": {
+        "shape": "(1, 128, 124, 108)",
+        "dtype": "float16"
+      },
+      "apu_0:6": {
+        "shape": "(1, 128, 124, 108)",
+        "dtype": "float16"
+      },
+      "apu_0:7": {
+        "shape": "(1, 128, 124, 108)",
+        "dtype": "float16"
+      },
+      "apu_0:8": {
+        "shape": "(1, 128, 124, 108)",
+        "dtype": "float16"
+      },
+      "apu_0:9": {
+        "shape": "(1, 128, 124, 108)",
+        "dtype": "float16"
+      },
+      "apu_0:10": {
+        "shape": "(1, 256, 62, 54)",
+        "dtype": "float16"
+      },
+      "apu_0:11": {
+        "shape": "(1, 256, 62, 54)",
+        "dtype": "float16"
+      },
+      "apu_0:12": {
+        "shape": "(1, 256, 62, 54)",
+        "dtype": "float16"
+      },
+      "apu_0:13": {
+        "shape": "(1, 256, 62, 54)",
+        "dtype": "float16"
+      },
+      "apu_0:14": {
+        "shape": "(1, 256, 62, 54)",
+        "dtype": "float16"
+      },
+      "apu_0:15": {
+        "shape": "(1, 256, 62, 54)",
+        "dtype": "float16"
+      },
+      "apu_0:16": {
+        "shape": "(1, 18, 248, 216)",
+        "dtype": "float16"
+      },
+      "apu_0:17": {
+        "shape": "(1, 42, 248, 216)",
+        "dtype": "float16"
+      },
+      "apu_0:18": {
+        "shape": "(1, 12, 248, 216)",
+        "dtype": "float16"
+      }
+    },
+    "is_abc": "true",
+    "version": "2024120013"
+  }
+}

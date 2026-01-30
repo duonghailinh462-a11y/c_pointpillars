@@ -97,10 +97,38 @@ CMakeFiles/pointpillars_inference.dir/src/voxelizer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pointpillars_inference.dir/src/voxelizer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /zhw/c_pointpillars/src/voxelizer.cpp -o CMakeFiles/pointpillars_inference.dir/src/voxelizer.cpp.s
 
+CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.o: CMakeFiles/pointpillars_inference.dir/flags.make
+CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.o: ../src/pfn.cpp
+CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.o: CMakeFiles/pointpillars_inference.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/zhw/c_pointpillars/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.o -MF CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.o.d -o CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.o -c /zhw/c_pointpillars/src/pfn.cpp
+
+CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /zhw/c_pointpillars/src/pfn.cpp > CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.i
+
+CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /zhw/c_pointpillars/src/pfn.cpp -o CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.s
+
+CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.o: CMakeFiles/pointpillars_inference.dir/flags.make
+CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.o: ../src/rpn_runner.cpp
+CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.o: CMakeFiles/pointpillars_inference.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/zhw/c_pointpillars/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.o -MF CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.o.d -o CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.o -c /zhw/c_pointpillars/src/rpn_runner.cpp
+
+CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /zhw/c_pointpillars/src/rpn_runner.cpp > CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.i
+
+CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /zhw/c_pointpillars/src/rpn_runner.cpp -o CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.s
+
 CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.o: CMakeFiles/pointpillars_inference.dir/flags.make
 CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.o: ../src/postprocess.cpp
 CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.o: CMakeFiles/pointpillars_inference.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/zhw/c_pointpillars/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/zhw/c_pointpillars/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.o -MF CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.o.d -o CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.o -c /zhw/c_pointpillars/src/postprocess.cpp
 
 CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.i: cmake_force
@@ -115,6 +143,8 @@ CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.s: cmake_force
 pointpillars_inference_OBJECTS = \
 "CMakeFiles/pointpillars_inference.dir/src/main.cpp.o" \
 "CMakeFiles/pointpillars_inference.dir/src/voxelizer.cpp.o" \
+"CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.o" \
+"CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.o" \
 "CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.o"
 
 # External object files for target pointpillars_inference
@@ -122,10 +152,12 @@ pointpillars_inference_EXTERNAL_OBJECTS =
 
 pointpillars_inference: CMakeFiles/pointpillars_inference.dir/src/main.cpp.o
 pointpillars_inference: CMakeFiles/pointpillars_inference.dir/src/voxelizer.cpp.o
+pointpillars_inference: CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.o
+pointpillars_inference: CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.o
 pointpillars_inference: CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.o
 pointpillars_inference: CMakeFiles/pointpillars_inference.dir/build.make
 pointpillars_inference: CMakeFiles/pointpillars_inference.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/zhw/c_pointpillars/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable pointpillars_inference"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/zhw/c_pointpillars/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable pointpillars_inference"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pointpillars_inference.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -4,15 +4,6 @@
 #include <cstdint>
 #include <vector>
 
-// =========================
-// 旧版接口（保持 main.cpp 可编译）
-// =========================
-struct DetectionResult {
-    std::vector<std::array<float, 7>> boxes_3d;  // [num_detections, 7]
-    std::vector<float> scores_3d;                // [num_detections]
-    std::vector<int> labels_3d;                  // [num_detections]
-};
-
 class PostProcessor {
 public:
     PostProcessor(float score_thr = 0.3f, float nms_thr = 0.01f, int max_num = 100);
@@ -55,11 +46,9 @@ struct DecodeConfig {
     // anchors: 每个类别一个 size，且每个位置有 num_rot 个角度
     struct AnchorSize { float w, l, h, z_center; };
     std::vector<AnchorSize> anchor_sizes = {
-        // 训练 config: sizes=[[0.8, 0.6, 1.73], [1.76, 0.6, 1.73], [3.9, 1.6, 1.56]]
-        // 这里结构是 {w, l, h, z_center}，所以注意 l/w 对调：
-        {0.6f, 0.8f, 1.73f, -0.6f},   // Pedestrian
-        {0.6f, 1.76f, 1.73f, -0.6f},  // Cyclist
-        {1.6f, 3.9f, 1.56f, -1.78f},  // Car
+        {1.6f, 3.9f, 1.56f, -1.78f},  // Car (Index 0)
+        {0.6f, 0.8f, 1.73f, -0.6f},   // Pedestrian (Index 1)
+        {0.6f, 1.76f, 1.73f, -0.6f},  // Cyclist (Index 2)
     };
     int num_rot = 2; // 0, 1.57
 

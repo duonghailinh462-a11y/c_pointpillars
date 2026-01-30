@@ -153,6 +153,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pointpillars_inference.dir/build.make CMakeFiles/pointpillars_inference.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/pfn.o: src/pfn.cpp.o
+.PHONY : src/pfn.o
+
+# target to build an object file
+src/pfn.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pointpillars_inference.dir/build.make CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.o
+.PHONY : src/pfn.cpp.o
+
+src/pfn.i: src/pfn.cpp.i
+.PHONY : src/pfn.i
+
+# target to preprocess a source file
+src/pfn.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pointpillars_inference.dir/build.make CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.i
+.PHONY : src/pfn.cpp.i
+
+src/pfn.s: src/pfn.cpp.s
+.PHONY : src/pfn.s
+
+# target to generate assembly for a file
+src/pfn.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pointpillars_inference.dir/build.make CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.s
+.PHONY : src/pfn.cpp.s
+
 src/postprocess.o: src/postprocess.cpp.o
 .PHONY : src/postprocess.o
 
@@ -176,6 +200,30 @@ src/postprocess.s: src/postprocess.cpp.s
 src/postprocess.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pointpillars_inference.dir/build.make CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.s
 .PHONY : src/postprocess.cpp.s
+
+src/rpn_runner.o: src/rpn_runner.cpp.o
+.PHONY : src/rpn_runner.o
+
+# target to build an object file
+src/rpn_runner.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pointpillars_inference.dir/build.make CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.o
+.PHONY : src/rpn_runner.cpp.o
+
+src/rpn_runner.i: src/rpn_runner.cpp.i
+.PHONY : src/rpn_runner.i
+
+# target to preprocess a source file
+src/rpn_runner.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pointpillars_inference.dir/build.make CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.i
+.PHONY : src/rpn_runner.cpp.i
+
+src/rpn_runner.s: src/rpn_runner.cpp.s
+.PHONY : src/rpn_runner.s
+
+# target to generate assembly for a file
+src/rpn_runner.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pointpillars_inference.dir/build.make CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.s
+.PHONY : src/rpn_runner.cpp.s
 
 src/voxelizer.o: src/voxelizer.cpp.o
 .PHONY : src/voxelizer.o
@@ -213,9 +261,15 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/pfn.o"
+	@echo "... src/pfn.i"
+	@echo "... src/pfn.s"
 	@echo "... src/postprocess.o"
 	@echo "... src/postprocess.i"
 	@echo "... src/postprocess.s"
+	@echo "... src/rpn_runner.o"
+	@echo "... src/rpn_runner.i"
+	@echo "... src/rpn_runner.s"
 	@echo "... src/voxelizer.o"
 	@echo "... src/voxelizer.i"
 	@echo "... src/voxelizer.s"

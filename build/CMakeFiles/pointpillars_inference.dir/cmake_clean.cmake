@@ -1,8 +1,12 @@
 file(REMOVE_RECURSE
   "CMakeFiles/pointpillars_inference.dir/src/main.cpp.o"
   "CMakeFiles/pointpillars_inference.dir/src/main.cpp.o.d"
+  "CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.o"
+  "CMakeFiles/pointpillars_inference.dir/src/pfn.cpp.o.d"
   "CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.o"
   "CMakeFiles/pointpillars_inference.dir/src/postprocess.cpp.o.d"
+  "CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.o"
+  "CMakeFiles/pointpillars_inference.dir/src/rpn_runner.cpp.o.d"
   "CMakeFiles/pointpillars_inference.dir/src/voxelizer.cpp.o"
   "CMakeFiles/pointpillars_inference.dir/src/voxelizer.cpp.o.d"
   "pointpillars_inference"

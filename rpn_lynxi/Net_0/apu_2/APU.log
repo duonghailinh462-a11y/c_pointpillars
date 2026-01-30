@@ -1,0 +1,122 @@
+  APU log      : rpn_lynxi/Net_0/apu_2/APU.log
+  APU cmd      : /data/zhw/miniforge3/envs/yolov5_env/lib/python3.8/site-packages/tvm/GenABC -i rpn_lynxi/Net_0/apu_2/apu_lib.bin -s 321408 -o ./ --coreMemMode auto -r false -g true -e false -x 0 -m 0 -d float -b 1 -c 0 --optFlag 0 --inputprocmode -1 --ctrlopMoreCmdSize -1 --scaleMaxEn 0 --lutopt 0 --ddrMemMode 0 --sliceStrategy -1 --armopParasMode 1 --batchOutputArrange true --mincutsize 0 --convertMultiOut 0 --autoComposite 1 --forcebatch false
+  Git version  : Lynabc_hw3_20241225_1.20.0_0024 (release)
+  APU_LOG_LEVEL: 1
+  inGraph      : false
+
+  reset base config
+  setFaultColumns is already set to [0]
+  setChipVer is already set to [0]
+  setHorCoreCnt is already set to [6]
+  setVerCoreCnt is already set to [5]
+  setTransCorePhyId is already set to [5]
+  setIfGenMulBatch is already set to [0]
+  setOptFlag is already set to [0x0]
+  setFeatureMask is already set to [0x0]
+  setMaxRetryCount changed [0 -> -1]
+  setCompileStep changed [2 -> -1]
+  setOptLevel is already set to [3]
+  setOptLookup is already set to [-1]
+  setMMZZoneBaseAddr is already set to [0xffffffffffffffff]
+  setCvtMultiOut is already set to [0]
+  setPowerSafeMode is already set to [0]
+  setAlgoVer is already set to [-1]
+  set nInputLimit to  128.00 M ( 134217728) bytes.
+  setUsrNumBatch is already set to [1]
+  setNumBatch is already set to [1]
+  setUsrCoreMemMode changed [0 -> -1]
+  setCoreMemMode changed [0 -> -1]
+  set binLoadMode to 0.
+  setUsrSliceStrategy is already set to [-1]
+  setSliceStrategy changed [0 -> -1]
+  setUsrPresetCores is already set to [0]
+  setPresetCores is already set to [0]
+  setUsrInputProcMode is already set to [-1]
+  setInputProcMode is already set to [-1]
+  setAutoComposite changed [-1 -> 1]
+  setTryCount is already set to [0]
+  set bUseUnifyCacheMode to 1.
+  setUsrCoreMemMode changed [-1 -> 2]
+  setCoreMemMode changed [-1 -> 2]
+
+try round[0] start ...
+  coreMemMode[2] model[0] featureMask[0x0] sliceStrategy[-1] presetCores[0] inputProcMode[-1] nBatch[1]
+  setIsSaveGolden is already set to [0]
+  setUsrPresetCores is already set to [0]
+  setPresetCores is already set to [0]
+  setFeatureMask is already set to [0x0]
+  setCompileStep changed [-1 -> 0]
+
+mapping start ...
+====================================
+[2026-01-28 08:48:35:397 /data/jenkins/apu_test/workspace/LynABC_Merged/LynABC/3rdparty/lxapu/include/core/LXSession.cpp:1290][error] LXSession::run(): the prim node [Sort[0].SortOpNode.VcSortNode, 10022] preRun failed with code 108, in shape = {1, 321408, } {1, 321408, }.
+
+[2026-01-28 08:48:35:397 /apu_share/auto_build/lynxiqa/APU_src/LynABC/temp/LynABC/src/map/worker/convPrimitiveWorker.cpp:229][error] in function CovPrimitiveWorker::doWork() prim graph convert failed
+
+[2026-01-28 08:48:35:398 /apu_share/auto_build/lynxiqa/APU_src/LynABC/temp/LynABC/src/map/worker/convPrimitiveWorker.cpp:689][error] in function CovPrimitiveWorker::doWork() failed with code 108
+
+[2026-01-28 08:48:35:398 /apu_share/auto_build/lynxiqa/APU_src/LynABC/temp/LynABC/src/map/compileMgr.cpp:366][error] 1 worker start failed, ret = 108
+
+received worker[1]    convert primitive (last[0] next[2]) failed message. 占用CPU时间 =     0.00s (累计用时     0.00s)
+====================================
+mapping done after worker 1. (累计用时     0.00s)
+
+[err] lx_map ret 108 - 图上结点输入大小错误 - the input tensor size error, cannot do calc
+[err] lx_map ret 108 - 图上结点输入大小错误 - the input tensor size error, cannot do calc
+[2026-01-28 08:48:35:398 /apu_share/auto_build/lynxiqa/APU_src/LynABC/temp/LynABC/src/strategy/abc_gen.cpp:2206][error] condition check failed : !rtValue!
+
+[assert_info][err] lx_map ret 108 - 图上结点输入大小错误 - the input tensor size error, cannot do calc
+  numOpNode[13] maxTensorSize[   0.00  bytes]
+try round[0] ret[108] done in 0.00s, total use 0.00s.
+  coreMemMode[2] model[0] featureMask[0x0] sliceStrategy[-1] presetCores[0] inputProcMode[-1] nBatch[1]
+
+  set bTryMoreTime[1] use_time_total[0.00s] (threshold 3600s)
+  setUsrCoreMemMode changed [2 -> -1]
+  setCoreMemMode changed [2 -> -1]
+  setTryCount changed [0 -> 1]
+  add retry count to 1.
+
+try round[1] start ...
+  coreMemMode[-1] model[0] featureMask[0x0] sliceStrategy[-1] presetCores[0] inputProcMode[-1] nBatch[1]
+  setTryCount changed [1 -> 0]
+  reset try count to 0.
+  setIsSaveGolden is already set to [0]
+  setUsrPresetCores is already set to [0]
+  setPresetCores is already set to [0]
+  setFeatureMask is already set to [0x0]
+  setCompileStep is already set to [0]
+
+mapping start ...
+====================================
+[2026-01-28 08:48:35:399 /data/jenkins/apu_test/workspace/LynABC_Merged/LynABC/3rdparty/lxapu/include/core/LXSession.cpp:1290][error] LXSession::run(): the prim node [Sort[0].SortOpNode.VcSortNode, 10022] preRun failed with code 108, in shape = {1, 321408, } {1, 321408, }.
+
+[2026-01-28 08:48:35:399 /apu_share/auto_build/lynxiqa/APU_src/LynABC/temp/LynABC/src/map/worker/convPrimitiveWorker.cpp:229][error] in function CovPrimitiveWorker::doWork() prim graph convert failed
+
+[2026-01-28 08:48:35:399 /apu_share/auto_build/lynxiqa/APU_src/LynABC/temp/LynABC/src/map/worker/convPrimitiveWorker.cpp:689][error] in function CovPrimitiveWorker::doWork() failed with code 108
+
+[2026-01-28 08:48:35:399 /apu_share/auto_build/lynxiqa/APU_src/LynABC/temp/LynABC/src/map/compileMgr.cpp:366][error] 1 worker start failed, ret = 108
+
+received worker[1]    convert primitive (last[0] next[2]) failed message. 占用CPU时间 =     0.00s (累计用时     0.00s)
+====================================
+mapping done after worker 1. (累计用时     0.00s)
+
+[err] lx_map ret 108 - 图上结点输入大小错误 - the input tensor size error, cannot do calc
+[err] lx_map ret 108 - 图上结点输入大小错误 - the input tensor size error, cannot do calc
+[2026-01-28 08:48:35:399 /apu_share/auto_build/lynxiqa/APU_src/LynABC/temp/LynABC/src/strategy/abc_gen.cpp:2206][error] condition check failed : !rtValue!
+
+[assert_info][err] lx_map ret 108 - 图上结点输入大小错误 - the input tensor size error, cannot do calc
+  setTryCount changed [0 -> 1]
+try round[1] ret[108] done in 0.00s, total use 0.00s.
+  coreMemMode[-1] model[0] featureMask[0x0] sliceStrategy[-1] presetCores[0] inputProcMode[-1] nBatch[1]
+
+[err] lyn_abc ret 108 - 图上结点输入大小错误 - the input tensor size error, cannot do calc
+[err] lyn_abc ret 108 - 图上结点输入大小错误 - the input tensor size error, cannot do calc
+lyn_abc ret 108
+[err] lyn_abc ret 108 - 图上结点输入大小错误 - the input tensor size error, cannot do calc
+error info is saved into rpn_lynxi/Net_0/apu_2/lynerr.log
+lyn_abc return info:
+  status: 108
+  strErr: [err] lyn_abc ret 108 - 图上结点输入大小错误 - the input tensor size error, cannot do calc
+  nMaxSupportBatch: 1
+  numBatch: 1
+COMPILER: build result is FAIL

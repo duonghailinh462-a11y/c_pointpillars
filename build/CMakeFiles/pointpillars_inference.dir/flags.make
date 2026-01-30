@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/zhw/c_pointpillars/include -I/zhw/c_pointpillars/third_party
+CXX_INCLUDES = -I/zhw/c_pointpillars/include -I/zhw/c_pointpillars/third_party -I/usr/local/lynxi/sdk/include
 
-CXX_FLAGS = -Wall -Wextra -Wpedantic -std=gnu++17
+CXX_FLAGS = -O3 -DNDEBUG -Wall -Wextra -Wpedantic -std=gnu++17
 

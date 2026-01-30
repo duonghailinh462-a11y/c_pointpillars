@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 #include <numeric>
 #include <stdexcept>
 
@@ -163,8 +164,20 @@ std::vector<Box3D> AnchorDecoder::decode(
     std::vector<Box3D> out;
     out.reserve(4096);
 
+    int processed_pixels = 0;
+    int total_pixels = H * W;
+    const int progress_interval = std::max(1, total_pixels / 20);  // 每5%输出一次
+    std::cout << "  开始遍历 " << total_pixels << " 个像素位置..." << std::endl;
+    std::cout.flush();  // 强制刷新输出缓冲区
+
     for (int y = 0; y < H; ++y) {
         for (int x = 0; x < W; ++x) {
+            processed_pixels++;
+            if (processed_pixels % progress_interval == 0 || processed_pixels == total_pixels) {
+                std::cout << "  Decode进度: " << (processed_pixels * 100 / total_pixels) 
+                          << "%, 当前候选框数: " << out.size() << std::endl;
+                std::cout.flush();  // 强制刷新
+            }
             const int pixel = y * W + x;
 
             // anchor center based on grid cell center
@@ -177,28 +190,57 @@ std::vector<Box3D> AnchorDecoder::decode(
                 const auto& as = cfg_.anchor_sizes[type_idx];
 
                 // score: per-class or single-class
-                float best_score = -1e9f;
-                int best_cls = 0;
-                for (int c = 0; c < cfg_.num_classes; ++c) {
-                    const int ch = a * cfg_.num_classes + c;
-                    const float logit = score_map[ch * stride + pixel];
-                    const float sc = sigmoid(logit);
-                    if (sc > best_score) {
-                        best_score = sc;
-                        best_cls = c;
-                    }
+                // float best_score = -1e9f;
+                // int best_cls = 0;
+                // for (int c = 0; c < cfg_.num_classes; ++c) {
+                //     const int ch = a * cfg_.num_classes + c;
+                //     const float logit = score_map[ch * stride + pixel];
+                //     const float sc = sigmoid(logit);
+                //     if (sc > best_score) {
+                //         best_score = sc;
+                //         best_cls = c;
+                //     }
+                // }
+                // if (best_score < score_thresh) continue;
+                const int target_cls = type_idx; 
+
+                // 2. 只取该类别对应的通道分数
+                // 通道索引 = Anchor总索引 * 类别数 + 目标类别
+                const int ch = a * cfg_.num_classes + target_cls; 
+                const int score_idx = ch * stride + pixel;
+                if (score_idx < 0 || score_idx >= (H * W * num_anchors * cfg_.num_classes)) {
+                    continue;  // 边界检查
                 }
-                if (best_score < score_thresh) continue;
+                const float logit = score_map[score_idx];
+                const float score = sigmoid(logit);
+
+                if (score < score_thresh) continue;
 
                 // box reg channels: [a*7 + k, y, x]
                 const int base_ch = a * 7;
-                const float dx = box_map[(base_ch + 0) * stride + pixel];
-                const float dy = box_map[(base_ch + 1) * stride + pixel];
-                const float dz = box_map[(base_ch + 2) * stride + pixel];
-                const float dw = box_map[(base_ch + 3) * stride + pixel];
-                const float dl = box_map[(base_ch + 4) * stride + pixel];
-                const float dh = box_map[(base_ch + 5) * stride + pixel];
-                const float dr = box_map[(base_ch + 6) * stride + pixel];
+                const int box_base_idx = base_ch * stride + pixel;
+                if (box_base_idx < 0 || box_base_idx >= static_cast<int>(H * W * num_anchors * 7)) {
+                    continue;  // 边界检查
+                }
+                
+                // 读取box回归值，并检查是否异常
+                float dx = box_map[(base_ch + 0) * stride + pixel];
+                float dy = box_map[(base_ch + 1) * stride + pixel];
+                float dz = box_map[(base_ch + 2) * stride + pixel];
+                float dw = box_map[(base_ch + 3) * stride + pixel];
+                float dl = box_map[(base_ch + 4) * stride + pixel];
+                float dh = box_map[(base_ch + 5) * stride + pixel];
+                float dr = box_map[(base_ch + 6) * stride + pixel];
+                
+                // 检查值是否异常（回归值通常不会太大）
+                if (!std::isfinite(dx) || !std::isfinite(dy) || !std::isfinite(dz) ||
+                    !std::isfinite(dw) || !std::isfinite(dl) || !std::isfinite(dh) || !std::isfinite(dr)) {
+                    continue;  // 跳过NaN/Inf
+                }
+                if (std::abs(dx) > 100.0f || std::abs(dy) > 100.0f || std::abs(dz) > 100.0f ||
+                    std::abs(dw) > 10.0f || std::abs(dl) > 10.0f || std::abs(dh) > 10.0f || std::abs(dr) > 3.14f) {
+                    continue;  // 跳过异常大的值
+                }
 
                 const float diagonal = std::sqrt(as.l * as.l + as.w * as.w);
 
@@ -210,9 +252,10 @@ std::vector<Box3D> AnchorDecoder::decode(
                 b.l = as.l * std::exp(dl);
                 b.h = as.h * std::exp(dh);
                 b.rot = normalize_angle(rots[rot_idx] + dr);
-                b.score = best_score;
+                b.score = score;
                 // label：默认用 anchor type（类别）作为 label；如果你的 score 是 per-class，这里更合理用 best_cls
-                b.label = (cfg_.num_classes > 1) ? best_cls : type_idx;
+                // b.label = (cfg_.num_classes > 1) ? best_cls : type_idx;
+                b.label = target_cls; // 强制与 Anchor 类型一致
 
                 out.push_back(b);
             }
@@ -220,7 +263,20 @@ std::vector<Box3D> AnchorDecoder::decode(
     }
 
     // 先按 score 排序，减少 NMS 负担
+    std::cout << "  Decode完成: 共 " << out.size() << " 个候选框" << std::endl;
+    std::cout.flush();
+    
+    if (out.size() > 100000) {
+        std::cerr << "  警告: 候选框数量过多(" << out.size() 
+                  << ")，可能导致NMS耗时很长。建议检查score阈值或RPN输出。" << std::endl;
+        std::cerr.flush();
+    }
+    
+    std::cout << "  开始排序候选框..." << std::endl;
+    std::cout.flush();
     std::sort(out.begin(), out.end(), [](const Box3D& a, const Box3D& b) { return a.score > b.score; });
+    std::cout << "  排序完成" << std::endl;
+    std::cout.flush();
     return out;
 }
 
@@ -230,6 +286,9 @@ std::vector<Box3D> AnchorDecoder::decode(
 
 std::vector<Box3D> nms_bev_rotated(const std::vector<Box3D>& boxes, float iou_thr, int max_num) {
     if (boxes.empty()) return {};
+    
+    std::cout << "  NMS开始: 输入 " << boxes.size() << " 个候选框" << std::endl;
+    
     std::vector<int> idx(boxes.size());
     std::iota(idx.begin(), idx.end(), 0);
 
@@ -240,13 +299,22 @@ std::vector<Box3D> nms_bev_rotated(const std::vector<Box3D>& boxes, float iou_th
     std::vector<Box3D> keep;
     keep.reserve(std::min<int>(max_num, static_cast<int>(boxes.size())));
 
+    const size_t total = idx.size();
+    const size_t progress_step = std::max<size_t>(1, total / 20);  // 每5%输出一次
+
     for (size_t _i = 0; _i < idx.size(); ++_i) {
+        if (_i % progress_step == 0) {
+            std::cout << "  NMS进度: " << (_i * 100 / total) 
+                      << "%, 已保留: " << keep.size() << std::endl;
+        }
+        
         int i = idx[_i];
         if (suppressed[i]) continue;
 
         keep.push_back(boxes[i]);
         if (max_num > 0 && static_cast<int>(keep.size()) >= max_num) break;
 
+        // 优化：只检查同类别的框
         for (size_t _j = _i + 1; _j < idx.size(); ++_j) {
             int j = idx[_j];
             if (suppressed[j]) continue;
@@ -258,5 +326,6 @@ std::vector<Box3D> nms_bev_rotated(const std::vector<Box3D>& boxes, float iou_th
         }
     }
 
+    std::cout << "  NMS完成: 保留 " << keep.size() << " 个框" << std::endl;
     return keep;
 }
